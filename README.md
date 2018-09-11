@@ -1,0 +1,2 @@
+# wordpress
+WordPress Templates Code
