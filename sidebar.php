@@ -14,3 +14,11 @@
     </li>
   <?php } } ?>
 </ul>
+
+
+<!-- Выводим количество записей категорий -->
+<?php
+  $mycats = wp_list_categories('show_count=1&title_li=&echo=0');
+  $mycats = str_replace(array('</a>','(',')'), array('<span class="test">','','</span></a>'), $mycats);
+  echo $mycats;
+?>

@@ -1,4 +1,4 @@
-<!-- WP Menu -->
+<!-- Вывод главного меню -->
 <?php
   $nav = wp_nav_menu(array(
     'theme_location'  => 'primary',
