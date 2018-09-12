@@ -17,5 +17,7 @@
 <?php do_excerpt(get_the_excerpt(), 20); ?>
 
 
-<!-- Путь до папки с картинками WP -->
-<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images.png">
+<!-- Вывод количества комментариев -->
+<a class="uk-link-reset" href="<?php the_permalink() ?>#comments">
+  <span uk-icon="icon: commenting;  ratio:0.9;"></span> <?php comments_number('0', '1', '%'); ?>
+</a>
