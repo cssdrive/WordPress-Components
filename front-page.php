@@ -7,6 +7,14 @@
 <?php endif; ?>
 
 
+<!-- Выводим последних постов -->
+<?php query_posts($query_string.'&cat=0&showposts=8'); ?>
+<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
+  <!-- Контент цикла -->
+<?php  endwhile; ?>
+<?php wp_reset_query();?>
+
+
 <!-- Меняем вид первого поста в выводе произвольных потов -->
 <?php query_posts(array('orderby' => 'rand', 'cat' => '0,1,2,3', 'showposts' => 5)); ?>
 <?php if (have_posts()) : ?>
