@@ -14,4 +14,5 @@ if( function_exists('acf_add_options_page') ) {
     'menu_title'	=> 'Header Slider',
     'parent_slug'	=> 'theme-general-settings',
   ));
+
 }
