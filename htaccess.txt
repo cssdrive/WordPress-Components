@@ -1,8 +1,10 @@
-# Меняем http на https (Hабочий вариант)
+# Меняем http на https (Рабочий вариант)
 RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+
 
 # Вариант 1
 RewriteEngine On
