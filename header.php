@@ -1,4 +1,7 @@
-<!-- Настройки HEADER -->
+<!-------------------------------------------------------------------
+  Настройки HEADER
+-------------------------------------------------------------------->
+
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -8,27 +11,31 @@
 </head>
 <body <?php body_class(); ?>>
 
+<!-------------------------------------------------------------------
+  Настройки Menu
+-------------------------------------------------------------------->
 
-<!-- Настройки HEADER -->
 <header class="header">
-<nav class="uk-navbar-container uk-navbar-transparent">
-	<div class="uk-container uk-container-expand">
-		<div class="uk-navbar boundary-align" uk-navbar>
-			<div class="uk-navbar-left">
-				<a class="uk-navbar-item uk-logo" href="<?php echo esc_url(home_url( '/' ) ); ?>">
-					<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/mobian-logo.png" alt="<?php bloginfo( 'name' ); ?>" width="147">
-				</a>
-			</div>
-			<div class="uk-navbar-right">
-				<?php wp_nav_menu( [ 'theme_location' => 'primary', 'walker' => new Kama_Walker_Nav_Menu(), ] ); ?>
-			</div>
-		</div>
-	</div>
-</nav>	
+  <nav class="uk-navbar-container uk-navbar-transparent">
+    <div class="uk-container uk-container-expand">
+      <div class="uk-navbar boundary-align" uk-navbar>
+        <div class="uk-navbar-left">
+          <a class="uk-navbar-item uk-logo" href="<?php echo esc_url(home_url( '/' ) ); ?>">
+            <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/mobian-logo.png" alt="<?php bloginfo( 'name' ); ?>" width="147">
+	  </a>
+        </div>
+        <div class="uk-navbar-right">
+          <?php wp_nav_menu( [ 'theme_location' => 'primary', 'walker' => new Kama_Walker_Nav_Menu(), ] ); ?>
+        </div>
+      </div>
+    </div>
+  </nav>	
 </header>
 
+<!-------------------------------------------------------------------
+  Вывод плагина Breadcrumbs
+-------------------------------------------------------------------->
 
-<!-- Вывод плагина Breadcrumbs -->
 <?php if ( is_front_page() ) : ?>
 <?php else : ?>
 <div class="breadcrumb" typeof="BreadcrumbList" vocab="https://schema.org/">
@@ -40,12 +47,16 @@
 </div>
 <?php endif; ?>
 
+<!-------------------------------------------------------------------
+  Вывод поиска
+-------------------------------------------------------------------->
 
-<!-- Вывод поиска -->
 <?php get_search_form(); ?>
 
+<!-------------------------------------------------------------------
+  Вывод главного меню
+-------------------------------------------------------------------->
 
-<!-- Вывод главного меню -->
 <?php
   $nav = wp_nav_menu(array(
     'theme_location'  => 'primary',
@@ -69,8 +80,10 @@
 
 <?= $nav ?>
 
+<!-------------------------------------------------------------------
+  Вывод главного меню V2
+-------------------------------------------------------------------->
 
-<!-- Вывод главного меню V2 -->
 <?php wp_nav_menu( array(
 	'menu'            => 'primary',
 	'theme_location'  => 'primary',
@@ -89,11 +102,16 @@
 	'walker'          => new Primary_Walker_Nav_Menu())
 ); ?>
 
-<!-- Kama Walker Nav Menu (inc/walker-nav-menu/kama-walker-nav-menu.php) -->
+<!-------------------------------------------------------------------
+  Kama Walker Nav Menu (inc/walker-nav-menu/kama-walker-nav-menu.php)
+-------------------------------------------------------------------->
+	
 <?php wp_nav_menu( [ 'theme_location' => 'header', 'walker' => new Kama_Walker_Nav_Menu(), ] ); ?>
 
+<!-------------------------------------------------------------------
+  Скрыть или показать определенный контент на страницах WP
+-------------------------------------------------------------------->
 
-<!-- Скрыть или показать определенный контент на страницах WP -->
 <?php
   if ( is_page('about') )
     // где 'about' это название или ярлык страницы
