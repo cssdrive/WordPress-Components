@@ -11,9 +11,9 @@
 
 <!-- Вывод контента через цикл -->
 <?php while ( have_posts() ) : the_post(); ?>	
-	<article id="post-<?php the_ID(); ?>" <?php post_class('uk-article'); ?>>
-		<?php the_content(); ?>	
-	</article>
+  <article id="post-<?php the_ID(); ?>" <?php post_class('uk-article'); ?>>
+    <?php the_content(); ?>	
+  </article>
 <?php endwhile;?>
 
 
