@@ -64,14 +64,14 @@ add_action( 'after_setup_theme', 'wp_setup' );
 -------------------------------------------------------------------*/
 
 function wp_scripts() {
-	wp_enqueue_style( 'uikit', get_theme_file_uri() . '/assets/css/uikit.min.css', null, '' );
-	wp_enqueue_style( 'theme', get_theme_file_uri() . '/assets/css/theme.css', null, '' );
-	
-	if( !is_admin()){ wp_deregister_script('jquery'); } // Отключаем стандартый WP JQuery
-	
-	wp_enqueue_script( 'jquery', get_theme_file_uri() . '/assets/js/jquery.js', array(), '', false );
-	wp_enqueue_script( 'uikit', get_theme_file_uri() . '/assets/js/uikit.min.js', array(), '', false );
-	wp_enqueue_script( 'uikit-icons', get_theme_file_uri() . '/assets/js/uikit-icons.min.js', array(), '', false );
+  wp_enqueue_style( 'uikit', get_theme_file_uri() . '/assets/css/uikit.min.css', null, '' );
+  wp_enqueue_style( 'theme', get_theme_file_uri() . '/assets/css/theme.css', null, '' );
+
+  if( !is_admin()){ wp_deregister_script('jquery'); } // Отключаем стандартый WP JQuery
+
+  wp_enqueue_script( 'jquery', get_theme_file_uri() . '/assets/js/jquery.js', array(), '', false );
+  wp_enqueue_script( 'uikit', get_theme_file_uri() . '/assets/js/uikit.min.js', array(), '', false );
+  wp_enqueue_script( 'uikit-icons', get_theme_file_uri() . '/assets/js/uikit-icons.min.js', array(), '', false );
 }
 add_action( 'wp_enqueue_scripts', 'wp_scripts' );
 
@@ -286,7 +286,7 @@ function pagenavi( $before = '', $after = '', $echo = true, $args = array(), $wp
 
 
 /*------------------------------------------------------------------
-  Фильтр имя пользователя от непригодных для использования символов
+  Инфо блоки в админке
 -------------------------------------------------------------------*/
 
 // Перед полем для ввода заголовка записи
