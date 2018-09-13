@@ -1,5 +1,7 @@
 <?php
 
+// Закрыть прямой доступ к файлу Wp, отобразится пустой лист при просмотре кода.
+
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
