@@ -16,11 +16,31 @@
     'link_after'      => '',
     'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
     'depth'           => 2,
-    'walker'          => new WalkerNavMenu('navbar'),
+    'walker'          => new Primary_Walker_Nav_Menu('navbar'),
   ));
 ?>
 
 <?= $nav ?>
+
+
+<!-- Вывод главного меню V2 -->
+<?php wp_nav_menu( array(
+	'menu'            => 'primary',
+	'theme_location'  => 'primary',
+	'container'       => 'ul',
+	'container_id'    => '',
+	'container_class' => '',
+	'menu_id'         => '',
+	'menu_class'      => 'uk-navbar-nav uk-navbar-parent-icon',
+	'before'          => '',
+	'after'           => '',
+	'link_before'     => '<span>',
+	'link_after'      => '</span>',
+	'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+	'fallback_cb'     => 'Primary_Walker_Nav_Menu::fallback',
+	'depth'           => 2,
+	'walker'          => new Primary_Walker_Nav_Menu())
+); ?>
 
 
 <!-- Скрыть или показать определенный контент на страницах WP -->
