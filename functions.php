@@ -38,6 +38,20 @@ function remove_cat_name( $title ){
 }
 add_filter( 'get_the_archive_title', 'remove_cat_name' );
 
+/*------------------------------------------------------------------
+  Колонка миниатюры в списке записей админки
+-------------------------------------------------------------------*/
+
+add_filter('manage_posts_columns', 'posts_columns', 5);
+add_action('manage_posts_custom_column', 'posts_custom_columns', 5, 2);
+function posts_columns($defaults){
+    $defaults['riv_post_thumbs'] = __('Миниатюра');
+    return $defaults;
+}
+function posts_custom_columns($column_name, $id){
+	if($column_name === 'riv_post_thumbs'){ ?>
+    <img src="<?php the_post_thumbnail('thumbnail', array(50,50)); ?>">  
+<?php }} ?>
 
 /*------------------------------------------------------------------
   Подключаем настройки WP
@@ -58,7 +72,6 @@ function wp_setup() {
 }
 add_action( 'after_setup_theme', 'wp_setup' );
 
-
 /*------------------------------------------------------------------
   Подключаем стили и скрипты
 -------------------------------------------------------------------*/
@@ -75,7 +88,6 @@ function wp_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'wp_scripts' );
 
-
 /*------------------------------------------------------------------
   Подключаем свои стили в админку
 -------------------------------------------------------------------*/
@@ -84,7 +96,6 @@ function mystylesheet(){
 	echo '<link href="'.get_bloginfo( 'stylesheet_directory' ).'/assets/css/admin.css" rel="stylesheet" type="text/css">';
 }
 add_action('admin_head', 'mystylesheet');
-
 
 /*------------------------------------------------------------------
   Отключаем создание миниатюр файлов для указанных размеров
@@ -100,7 +111,6 @@ function delete_intermediate_image_sizes( $sizes ){
 	) );
 }
 add_filter( 'intermediate_image_sizes', 'delete_intermediate_image_sizes' );
-
 
 /*------------------------------------------------------------------
   Подключаем виджеты
@@ -118,7 +128,6 @@ function widgets_init() {
 	) );
 }
 add_action( 'widgets_init', 'widgets_init' );
-
 
 /*------------------------------------------------------------------
   Фильтр имя пользователя от непригодных для использования символов
@@ -158,7 +167,6 @@ if( !is_admin()){
   wp_register_script('jquery', ("//code.jquery.com/jquery-3.1.1.min.js"), array(), true);
   wp_enqueue_script('jquery');
 }
-
 
 /*------------------------------------------------------------------
   Постраничная навигация
@@ -283,7 +291,6 @@ function pagenavi( $before = '', $after = '', $echo = true, $args = array(), $wp
 
 	return $out;
 }
-
 
 /*------------------------------------------------------------------
   Инфо блоки в админке
