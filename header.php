@@ -20,9 +20,7 @@
     <div class="uk-container uk-container-expand">
       <div class="uk-navbar boundary-align" uk-navbar>
         <div class="uk-navbar-left">
-          <a class="uk-navbar-item uk-logo" href="<?php echo esc_url(home_url( '/' ) ); ?>">
-            <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/mobian-logo.png" alt="<?php bloginfo( 'name' ); ?>" width="147">
-	  </a>
+          <a class="uk-navbar-item uk-logo" href="<?php echo esc_url(home_url( '/' ) ); ?>"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/logo.png" alt="<?php bloginfo( 'name' ); ?>"></a>
         </div>
         <div class="uk-navbar-right">
           <?php wp_nav_menu( [ 'theme_location' => 'primary', 'walker' => new Kama_Walker_Nav_Menu(), ] ); ?>
