@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+
 // Подключаем форматы записей
 add_theme_support( 'post-formats', array( 'aside', 'audio', 'image', 'video' ) );
 
