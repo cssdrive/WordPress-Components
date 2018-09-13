@@ -3,6 +3,25 @@
 <?php the_time('j. F Y'); ?>
 
 
+<!-- Подключаем Header и footer -->
+<?php get_header(); ?>
+<?php get_sidebar(); ?>
+<?php get_footer(); ?>
+
+
+<!-- Вывод контента через цикл -->
+<?php while ( have_posts() ) : the_post(); ?>	
+	<article id="post-<?php the_ID(); ?>" <?php post_class('uk-article'); ?>>
+		<?php the_content(); ?>	
+	</article>
+<?php endwhile;?>
+
+
+
+<!-- Подключаем форматов страницы -->
+<?php get_template_part( '/page/content/', get_post_format('name') ); ?>
+
+
 <!-- Вывод заголовков -->
 <a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
   <?php the_title(); ?>

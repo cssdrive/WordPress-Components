@@ -1,3 +1,50 @@
+<!-- Настройки HEADER -->
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+	<meta charset="<?php bloginfo( 'charset' ); ?>">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<?php wp_head(); ?>
+</head>
+<body <?php body_class(); ?>>
+
+
+<!-- Настройки HEADER -->
+<header class="header">
+<nav class="uk-navbar-container uk-navbar-transparent">
+	<div class="uk-container uk-container-expand">
+		<div class="uk-navbar boundary-align" uk-navbar>
+			<div class="uk-navbar-left">
+				<a class="uk-navbar-item uk-logo" href="<?php echo esc_url(home_url( '/' ) ); ?>">
+					<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/mobian-logo.png" alt="<?php bloginfo( 'name' ); ?>" width="147">
+				</a>
+			</div>
+			<div class="uk-navbar-right">
+				<?php wp_nav_menu( [ 'theme_location' => 'primary', 'walker' => new Kama_Walker_Nav_Menu(), ] ); ?>
+			</div>
+		</div>
+	</div>
+</nav>	
+</header>
+
+
+<!-- Вывод плагина Breadcrumbs -->
+<?php if ( is_front_page() ) : ?>
+<?php else : ?>
+<div class="breadcrumb" typeof="BreadcrumbList" vocab="https://schema.org/">
+	<div class="uk-section uk-section-muted crumbs">
+		<div class="uk-container uk-container-expand uk-link-text uk-text-small crumbs-list">
+			<?php if(function_exists('bcn_display')) {bcn_display();} ?>
+		</div>
+	</div>
+</div>
+<?php endif; ?>
+
+
+<!-- Вывод поиска -->
+<?php get_search_form(); ?>
+
+
 <!-- Вывод главного меню -->
 <?php
   $nav = wp_nav_menu(array(
@@ -41,6 +88,9 @@
 	'depth'           => 2,
 	'walker'          => new Primary_Walker_Nav_Menu())
 ); ?>
+
+<!-- Kama Walker Nav Menu (inc/walker-nav-menu/kama-walker-nav-menu.php) -->
+<?php wp_nav_menu( [ 'theme_location' => 'header', 'walker' => new Kama_Walker_Nav_Menu(), ] ); ?>
 
 
 <!-- Скрыть или показать определенный контент на страницах WP -->
