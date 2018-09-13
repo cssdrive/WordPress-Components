@@ -1,4 +1,56 @@
-# Меняем http на https
+# Меняем http на https (Hабочий вариант)
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Вариант 1
+RewriteEngine On
+RewriteCond %{HTTPS} =off 
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [QSA,L]
+
+# Вариант 2
 RewriteEngine On
 RewriteCond %{SERVER_PORT} !^443$
-RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
+RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
+
+# Вариант 3
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Вариант 4
+RewriteCond %{ENV:HTTPS} !on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Вариант 5
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+# Вариант 6
+RewriteEngine On
+RewriteCond %{HTTP:SSL} !1
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [QSA,L,R=301]
+
+# Вариант 7
+Options +FollowSymLinks
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^site.ru[nc]
+RewriteRule ^(.*)$ https://site.ru/$1 [r=301,nc]
+# или RewriteRule ^(.*)$ https://www.site.ru/$1 [r=301,nc] если нужно с www
+
+# Вариант 8
+RewriteCond %{HTTP:PORT} !^443$
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R]
+
+# Вариант 9
+RewriteEngine On # Если этой строки нет выше
+RewriteCond %{HTTP:X-Forwarded-Protocol} !=https
+RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L] 
+
+# Вариант 10
+RewriteCond %{REQUEST_FILENAME} !^/\.well-known(.*)$
+RewriteCond %{HTTP:X-HTTPS} !1
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
