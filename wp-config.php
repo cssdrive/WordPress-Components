@@ -1,3 +1,14 @@
+<?php
+
+// Добавляем внутри этого вблока
+if ( !defined('ABSPATH') )
+	define('ABSPATH', dirname(__FILE__) . '/');
+
+  /* Сюда вставлять код */ 
+
+require_once(ABSPATH . 'wp-settings.php');
+
+
 //Меняем папку [wp-content] на свою
 define('WP_CONTENT_FOLDERNAME', 'cdn'); //CSSD название измененой папки
 define('WP_CONTENT_DIR', ABSPATH . WP_CONTENT_FOLDERNAME);
