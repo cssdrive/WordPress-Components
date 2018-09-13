@@ -17,7 +17,6 @@
 <?php endwhile;?>
 
 
-
 <!-- Подключаем форматов страницы -->
 <?php get_template_part( '/page/content/', get_post_format('name') ); ?>
 
