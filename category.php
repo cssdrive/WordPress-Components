@@ -63,3 +63,18 @@
 <?php else : ?>
 	Постов нет!
 <?php endif; ?>
+
+<!-------------------------------------------------------------------
+  Вывод постов с конца
+-------------------------------------------------------------------->
+
+<?php query_posts( $query_string.'&cat=0&order=DESC&posts_per_page=3'); //Значения (-9) отключают категорию (9) добавляют; C начала order=ASC; с конца order=DESC ?>
+<?php if ( have_posts() ) : ?>
+  <?php while ( have_posts() ) : the_post(); ?>
+    <img src="<?php if ( has_post_thumbnail() ) { the_post_thumbnail('large'); } ?>" uk-cover>
+    <h1 class="uk-heading-primary" uk-slideshow-parallax="x: 200,-200"><?php the_title( '', '' ); ?></h1>
+    <div class="uk-text-meta" uk-slideshow-parallax="x: 400,-400"><?php the_excerpt(); ?></div>
+  <?php else : ?>
+    Нет постовв
+  <?php endif; ?>
+<?php wp_reset_query(); ?>
