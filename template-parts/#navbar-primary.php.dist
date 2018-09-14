@@ -1,0 +1,90 @@
+<div class="menu uk-background-secondary uk-light uk-preserve-color">
+	<nav class="main-navbar uk-navbar-container uk-navbar-transparent" role="navigation">
+        <div class="uk-container uk-container-large">
+            <div uk-navbar>
+				<div class="uk-navbar-left">
+					<?php monopixel_the_custom_logo(); ?> <a class="uk-navbar-item uk-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+				</div>
+				<div class="uk-navbar-center">
+					<?php
+						wp_nav_menu( array(
+							'menu'            => 'primary',
+							'theme_location'  => 'primary',
+							'container'       => 'div',
+							'container_id'    => '',
+							'container_class' => '',
+							'menu_id'         => '',
+							'menu_class'      => 'uk-navbar-nav uk-visible@m',
+							'before'          => '',
+					    	'after'           => '',
+					    	'link_before'     => '<span>',
+					    	'link_after'      => '</span>',
+							'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+							'fallback_cb'     => 'monopixel_primary_menu::fallback',
+							'depth'           => 2,
+							'walker'          => new monopixel_primary_menu())
+						);
+					?>
+				</div>
+				<div class="uk-navbar-right">
+					<a class="uk-navbar-toggle" href="#offcanvas" uk-toggle><span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left uk-visible@s"><?php printf( esc_html__('Menu', 'monopixel' ) ); ?></span></a>
+					<?php
+						wp_nav_menu( array(
+							'menu'            => 'language',
+							'theme_location'  => 'language',
+							'container'       => 'div',
+							'container_id'    => '',
+							'container_class' => '',
+							'menu_id'         => '',
+							'menu_class'      => 'uk-navbar-nav',
+							'before'          => '',
+					    	'after'           => '',
+					    	'link_before'     => '',
+					    	'link_after'      => '',
+							'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+							'fallback_cb'     => 'monopixel_primary_menu::fallback',
+							'depth'           => 2,
+							'walker'          => new monopixel_primary_menu())
+						);
+					?>
+				</div>
+            </div>
+        </div>
+	</nav>
+</div>
+
+<div id="offcanvas" uk-offcanvas="flip: true;">
+    <div class="uk-offcanvas-bar">
+		<button class="uk-offcanvas-close uk-close-large" type="button" uk-close></button>
+
+		<h3><?php bloginfo( 'name' ); ?></h3>
+		<p class="uk-text-meta"><?php echo get_bloginfo( 'description' ) ?></p>
+		
+		<div class="uk-margin">
+			<form role="search" method="get" class="uk-search uk-search-default uk-width-1-1" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+	            <input class="uk-search-input" type="search" placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder', 'monopixel' ); ?>" value="<?php echo get_search_query(); ?>" name="s">
+	        </form>
+		</div>
+		
+		<?php
+	        wp_nav_menu( array(
+				'menu'            => 'primary',
+				'theme_location'  => 'primary',
+				'container'       => 'ul',
+				'container_id'    => '',
+				'container_class' => '',
+				'menu_id'         => '',
+				'menu_class'      => 'uk-nav uk-nav-primary uk-nav-parent-icon',
+				'before'          => '',
+		    	'after'           => '',
+		    	'link_before'     => '',
+		    	'link_after'      => '',
+				'items_wrap'      => '<ul id="%1$s" class="%2$s" uk-nav="multiple: true">%3$s</ul>',
+				'fallback_cb'     => 'monopixel_offcanvas_menu::fallback',
+				'depth'           => 2,
+				'walker'          => new monopixel_offcanvas_menu())
+			);
+		?>
+
+    </div>
+</div>

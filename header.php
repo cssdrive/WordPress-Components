@@ -45,6 +45,14 @@
 	</div>
 </div>
 <?php endif; ?>
+
+<!-------------------------------------------------------------------
+  Вывод миниатюор постов в файле header.php
+-------------------------------------------------------------------->
+
+<?php if ( ( is_single() || ( is_page() ) ) && has_post_thumbnail( get_queried_object_id() ) ) : ?>
+	<?php echo get_the_post_thumbnail( get_queried_object_id(), 'cssdrive-featured-image' ); ?>
+<?php endif;?>
 	
 <!-------------------------------------------------------------------
   Назвние сайта и описание

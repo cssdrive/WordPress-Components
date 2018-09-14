@@ -1,0 +1,54 @@
+<?php if ( is_front_page() ) : ?>	 
+    <?php if( has_header_video() && is_header_video_active() ){ ?>
+    	<div class="custom-header uk-background-secondary">
+	    	<div class="uk-height-large uk-cover-container uk-light uk-flex">
+				<video autoplay loop playsinline uk-video="automute: false; autoplay: true;" uk-cover>
+		        	<source src="<?php the_header_video_url() ?>" type="video/mp4">
+		    	</video>
+		    	<div class="uk-width-1-2@m uk-text-center uk-margin-auto uk-margin-auto-vertical site-branding-text" style="z-index: 1;">
+					
+					<h1 class="uk-margin-small-bottom site-title">
+						<?php bloginfo( 'name' ); ?>
+					</h1>
+					
+					<p class="uk-margin-remove uk-padding-remove site-description">
+						<?php $description = get_bloginfo( 'description', 'display' ); ?>
+							<?php if ( $description || is_customize_preview() ) : ?>
+						<?php echo $description; ?><?php endif; ?>
+					</p>
+					
+		    	</div>
+	    	</div>
+    	</div>	
+	<?php } else { ?>
+		<?php if ( has_header_image( 'custom-header' ) ) : ?>	
+		    <?php $header_image = get_header_image();  if ( ! empty( $header_image ) ) { ?>
+		    	<div class="custom-header uk-background-secondary">
+			    	<div class="uk-height-large uk-background-cover uk-flex" uk-parallax="bgy: -200" style="background-image: url('<?php header_image(); ?>');">
+						<div class="uk-width-1-2@m uk-text-center uk-margin-auto uk-margin-auto-vertical site-branding-text">
+							
+							<div class="uk-light">
+								<h1 class="uk-margin-small-bottom site-title">
+									<?php bloginfo( 'name' ); ?>
+								</h1>
+								
+								<p class="uk-margin-remove uk-padding-remov site-description">
+									<?php $description = get_bloginfo( 'description', 'display' ); ?>
+										<?php if ( $description || is_customize_preview() ) : ?>
+									<?php echo $description; ?><?php endif; ?>
+								</p>
+							</div>
+							
+							<!-- ONLY FOR DEMO -->
+							<div class="uk-margin">
+								<?php sprintf ( _e('<a class="uk-button uk-button-primary" href="/en/downloads/">Download</a>', 'monopixel') ); ?>
+								<?php sprintf ( _e('<a class="uk-button uk-button-secondary" href="/en/changelog/">Changelog</a>', 'monopixel') ); ?>
+							</div>
+							
+				    	</div>
+			    	</div>
+		    	</div>
+		    <?php } ?> 
+		<?php endif; ?> 
+	<?php } ?>
+<?php endif; ?>
