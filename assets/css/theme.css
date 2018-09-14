@@ -1,0 +1,26 @@
+/*------------------------------------------------------------------
+  Global Style
+------------------------------------------------------------------*/
+
+html, body {
+	background: #e5e8eb;
+	height: 100%;
+}
+
+p { padding: 0 0 15px; }
+
+/*------------------------------------------------------------------
+  Gutenberg Block Images
+------------------------------------------------------------------*/
+
+.wp-block-image {
+	text-align: center;
+}
+
+figure.wp-block-image.alignwide img {
+	width: 80%;
+}
+
+figure.wp-block-image.alignfull img {
+	width: 100%;
+}
