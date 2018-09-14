@@ -35,3 +35,31 @@
   <!-- Конец цикла -->
 <?php endif; ?>
 <?php wp_reset_query();?>
+
+<!-------------------------------------------------------------------
+  Пекламные вставки между постами в ленте новостей
+-------------------------------------------------------------------->
+
+<?php $counter = 0; ?>
+<?php if ( have_posts() ) : ?>
+	<?php while ( have_posts() ) : the_post(); ?>
+	<?php $counter = $counter + 1;?>
+		
+		<?php if(1 == $counter) : { ?>
+			<li><?php get_template_part( 'content', 'large' ); ?></li>
+		<?php } else : { ?>
+			<li><?php get_template_part( 'content' ); ?></li>
+		<?php } endif; ?>
+	
+		<?php if(2 == $counter) : { ?>
+			<li>Реклама 1</li>
+		<?php } endif; ?>
+		
+		<?php if(4 == $counter) : { ?>
+			<li>Реклама 3</li>
+		<?php } endif; ?>
+
+		<?php endwhile; ?>
+<?php else : ?>
+	Постов нет!
+<?php endif; ?>
