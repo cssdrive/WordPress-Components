@@ -120,8 +120,12 @@ function do_excerpt($string, $word_limit) {
 -------------------------------------------------------------------*/
 
 function wp_scripts() {
+  //wp_enqueue_style( 'style', get_stylesheet_uri() );
   wp_enqueue_style( 'uikit', get_theme_file_uri() . '/assets/css/uikit.min.css', null, '' );
+  wp_enqueue_style( 'constructor', get_theme_file_uri( '/assets/css/constructor.css' ), false, '', 'all' );
   wp_enqueue_style( 'theme', get_theme_file_uri() . '/assets/css/theme.css', null, '' );
+
+  wp_dequeue_style('wp-block-library'); // Отключаем Gutenberg style
 
   if( !is_admin()){ wp_deregister_script('jquery'); } // Отключаем стандартый WP JQuery
 
