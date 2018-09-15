@@ -415,7 +415,7 @@ function remove_category_url_plugin_row_meta( $links, $file ) {
 		if( plugin_basename( __FILE__ ) === $file ) {
 			$links[] = sprintf(
 				'<a target="_blank" href="%s">%s</a>',
-				esc_url('http://wordlab.com.br/donate/'),
+				esc_url('#'),
 				__( 'Donate', 'remove_category_url' )
 			);
 		}
