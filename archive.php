@@ -80,8 +80,12 @@
 
 <!-- Вывод отрывка поста -->
 <?php the_excerpt(); ?>
+
 <?php do_excerpt(get_the_excerpt(), 20); ?>
 
+<?php if ( is_category() ) { the_excerpt(); } else { the_content(); } ?>
+
+<?php the_content(); ?>
 
 <!-- Вывод количества комментариев -->
 <a class="uk-link-reset" href="<?php the_permalink() ?>#comments">
