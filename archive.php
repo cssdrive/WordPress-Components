@@ -32,8 +32,13 @@
   <?php the_title(); ?>
 </a>
 
-<?php the_archive_title( '<h1 class="page-title">', '</h1>' ); ?>
-<?php the_archive_description( '<div class="taxonomy-description">', '</div>' ); ?>
+<?php
+  if ( is_single() ) {
+    the_title( '<h1 class="uk-article-title">', '</h1>' );
+  } else {
+    the_title( '<h2 class="uk-article-title"><a class="uk-link-reset" href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+  }
+?>
 
 <!-------------------------------------------------------------------
   Вывод Аватарки
@@ -103,3 +108,19 @@
 	  <?php the_post_thumbnail('thumbnail'); ?>
 	</a>
 <?php endif; ?>
+
+<!-------------------------------------------------------------------
+  Вывод миниатюр V2
+-------------------------------------------------------------------->
+
+<?php  if ( is_single() ) { ?>	
+		<?php if ( has_post_thumbnail() ) : ?>
+	  	<?php the_post_thumbnail('thumbnail-post', ['class' => 'attachment-post-thumbnail size-post-thumbnail']); ?>
+		<?php endif; ?>
+	<?php } else { ?>
+	  <?php if ( has_post_thumbnail() ) : ?>
+		  <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+			  <?php the_post_thumbnail('thumbnail-post', ['class' => 'attachment-post-thumbnail size-post-thumbnail']); ?>
+			</a>
+		<?php endif; ?>
+	<? }	?>
