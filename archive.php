@@ -41,6 +41,16 @@
 ?>
 
 <!-------------------------------------------------------------------
+  Meta отписание поста
+-------------------------------------------------------------------->
+
+<ul class="uk-article-meta uk-child-width-auto@m uk-grid-small uk-flex-middle" uk-grid>
+  <li><img class="icons8" src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/icon/icons8-calendar.svg);" width="18" uk-svg> <?php the_time('l, '); ?><?php the_time('j F Y'); ?> <?php esc_attr_e( 'in', 'cssdrive' ); ?> <?php the_time(); ?> (<?php echo human_time_diff(get_the_time('U'), current_time('timestamp')), _e( ' ago', 'cssdrive'); ?>)</li>
+  <li><img class="icons8" src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/icon/icons8-gender_neutral_user.svg);" width="18" uk-svg> <a class="uk-text-meta" href="<?php echo get_author_posts_url(get_the_author_meta( 'ID' )); ?>"><?php the_author(); ?></a></li>
+  <li><img class="icons8" src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/icon/icons8-speech_bubble.svg);" width="18" uk-svg> <a class="uk-text-meta" href="<?php the_permalink() ?>#comments"><?php comments_number('Добавить комментарий', '1 Комментарий', '% Комментария'); ?></a></li>
+</ul>
+
+<!-------------------------------------------------------------------
   Вывод Аватарки
 -------------------------------------------------------------------->
 
