@@ -1,3 +1,12 @@
+<?php if ( is_user_logged_in() ) { ?>
+  <!-- LOGIN ON -->
+<?php $current_page = $_SERVER['REQUEST_URI']; ?>
+  <a href="<?php echo wp_logout_url($current_page); ?>" uk-icon="icon: sign-out"></a>
+<?php } else {   ?>
+  <!-- LOGIN -OFF -->
+  <a href="/wp-login.php" uk-icon="icon: sign-in"></a>
+<?php } ?>
+
 <!-------------------------------------------------------------------
   Настройки HEADER
 -------------------------------------------------------------------->
