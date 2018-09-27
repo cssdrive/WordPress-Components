@@ -42,3 +42,13 @@ function true_where_to_exclude($query) {
 	}
 }
 add_action('pre_get_posts', 'true_where_to_exclude');
+
+/*
+ * Изменить цитату на пароль
+ */ 
+function my_excerpt_password_form( $excerpt ) {
+    if ( post_password_required() )
+        $excerpt = get_the_password_form();
+    return $excerpt;
+}
+add_filter( 'the_excerpt', 'my_excerpt_password_form' );
