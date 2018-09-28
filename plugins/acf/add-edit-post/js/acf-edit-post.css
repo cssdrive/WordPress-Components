@@ -1,0 +1,69 @@
+sidr {
+    display: none;
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    max-width: 500px;
+    left: -500px;
+    right: auto;
+    background: #fff;
+    color: #333;
+    border-right: 2px solid #ebebeb;
+    font-size: 15px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 999999;
+}
+
+.sidr.right {
+    left: auto;
+    right: -500px;
+}
+
+.sidr.left {
+    left: -500px;
+    right: auto;
+}
+
+.sidr form.acf-form {
+    padding: 0 10px 5px;
+    margin: 0 0 10px;
+}
+
+/* Make sure the image/file uploader shows up on top of our Sidr menu */
+.media-modal,
+.media-modal.acf-media-modal {
+    z-index: 999999 !important;
+}
+
+.sidr .acf-form {
+    padding-top: 10px;
+}
+
+.sidr .acf-fields > .acf-field {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.sidr .edit-close,
+.sidr .acf-form-submit .button {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.sidr .menu-close,
+.sidr .menu-close:hover {
+    background: transparent;
+    color: #fff;
+    padding: 15px;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    text-decoration: none;
+    text-shadow: none;
+}
+
+#edit-toggle {
+    float: right;
+}
