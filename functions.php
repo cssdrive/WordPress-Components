@@ -6,6 +6,34 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
+/*  Подключаем скрипты в head
+============================================================*/
+
+function owl_carousel_scripts() {
+  if ( is_front_page() ) { // Выводим только на главной
+    wp_enqueue_style( 'owl-carousel', get_theme_file_uri( '/conponents/owl.carousel/css/owl.carousel.css' ), false, '1.3.3', 'all' );
+    wp_enqueue_script( 'owl-carousel', get_theme_file_uri() . '/conponents/owl.carousel/js/owl.carousel.js', array( 'jquery' ), '1.3.3', false );
+  }
+}
+add_action('wp_enqueue_scripts','owl_carousel_scripts');
+
+/*  Выводим в head стили и скрипты
+============================================================*/
+
+add_action('wp_head', 'hook_css');
+function hook_css(){
+	if ( is_front_page() ) { // Выводим только на главной
+		echo '
+		<style type="text/css" media="screen">
+							</style>
+			
+			<script>
+		    
+			</script>
+		';
+	}
+}
+
 // Возможность загружать SVG
 function cc_mime_types($mimes) {
   $mimes['svg'] = 'image/svg+xml';
