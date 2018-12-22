@@ -80,6 +80,23 @@ function remove_cat_name( $title ){
 add_filter( 'get_the_archive_title', 'remove_cat_name' );
 
 /*------------------------------------------------------------------
+    Лечим активное меню в подкатегории блога
+-------------------------------------------------------------------*/
+
+function add_current_nav_class($classes, $item) {
+
+    global $post;
+    $current_post_type = get_post_type_object(get_post_type($post->ID));
+    $current_post_type_slug = $current_post_type->rewrite['slug'];
+    $menu_slug = strtolower(trim($item->url));
+    if (strpos($menu_slug,$current_post_type_slug) !== false) {
+        $classes[] = 'uk-active';
+    }
+    return $classes;
+}
+add_action('nav_menu_css_class', 'add_current_nav_class', 10, 2 );
+
+/*------------------------------------------------------------------
   Подключаем настройки WP
 -------------------------------------------------------------------*/
 
