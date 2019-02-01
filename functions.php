@@ -220,6 +220,20 @@ function delete_intermediate_image_sizes( $sizes ){
 }
 add_filter( 'intermediate_image_sizes', 'delete_intermediate_image_sizes' );
 
+/**
+ * Отключаем все минимтюры
+ */
+function true_reduce_image_sizes( $sizes ){
+	$type = get_post_type($_REQUEST['post_id']);
+	foreach( $sizes as $key => $value ){
+		if( $value != '' ){ // отключаем всё, кроме thumbnail
+			unset( $sizes[$key] );
+		}
+	}
+	return $sizes;
+}
+add_filter( 'intermediate_image_sizes', 'true_reduce_image_sizes' );
+
 /*------------------------------------------------------------------
   Подключаем виджеты
 -------------------------------------------------------------------*/
