@@ -7,6 +7,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Удаление лишнего класса из <?php body_class(); ?>
+ */
+add_filter( 'body_class', function( $classes ) {
+    foreach($classes as $key => $class) {
+        if( $class == "home" || $class == "blog" ){
+            unset($classes[$key]);
+        }
+    }
+    return $classes;
+}, 1000);
+
+/**
  * Лечим активное меню в подкатегории блога.
  */
 function add_current_nav_class($classes, $item) {
