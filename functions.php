@@ -7,6 +7,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Лечим активное меню в подкатегории блога.
+ */
+function add_current_nav_class($classes, $item) {
+    global $post;
+    $current_post_type = get_post_type_object(get_post_type($post->ID));
+    $current_post_type_slug = $current_post_type->rewrite['slug'];
+    $menu_slug = strtolower(trim($item->url));
+    if (strpos($menu_slug,$current_post_type_slug) !== false) {
+        $classes[] = 'uk-active';
+    }
+    return $classes;
+}
+add_action('nav_menu_css_class', 'add_current_nav_class', 10, 2 );
+/**
+ * Удаляем классы из меню.
+ */
+function my_remove_all_class_item($classes, $item) {
+  $classes = '';
+  return $classes;
+}
+add_filter('nav_menu_css_class', 'my_remove_all_class_item', 10, 2 );
+/**
+ * Удаляем ID из меню
+ */
+add_filter('nav_menu_item_id', '__return_false');
+
+/**
  * Вывод анонса с заданным количеством слов <p class="uk-text-lead"><?php echo excerpt(20); ?></p>
  */
 // tn Limit Excerpt Length by number of Words
