@@ -273,20 +273,18 @@ function mystylesheet(){
 }
 add_action('admin_head', 'mystylesheet');
 
-/*------------------------------------------------------------------
-  Отключаем создание миниатюр файлов для указанных размеров
--------------------------------------------------------------------*/
-
-function delete_intermediate_image_sizes( $sizes ){
-	// размеры которые нужно удалить
-	return array_diff( $sizes, array(
-		'thumbnail',
-		'medium',
-		'large',
-		'full',
-	) );
+/**
+ * Отключаем создание миниатюр файлов для указанных размеров
+ */
+function true_unset_image_sizes( $sizes) {
+    unset( $sizes['thumbnail']); // миниатюра
+    unset( $sizes['medium']); // средний
+    unset( $sizes['medium_large']); // средне умеренный
+    unset( $sizes['large']); // большой
+    return $sizes;
 }
-add_filter( 'intermediate_image_sizes', 'delete_intermediate_image_sizes' );
+ 
+add_filter('intermediate_image_sizes_advanced', 'true_unset_image_sizes');
 
 /**
  * Отключаем все минимтюры
