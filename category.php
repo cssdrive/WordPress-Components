@@ -79,3 +79,50 @@
     Нет постовв
   <?php endif; ?>
 <?php wp_reset_query(); ?>
+
+<!-- Вывод постов через Switch -->
+<?php $num = 0; ?>
+<div class="row">
+    <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+            <?php
+                $n = $num % 10 + 1;
+                switch ($n) {
+                case 1:
+                case 2:
+                case 3:
+                case 6:
+                case 7:
+                case 10:
+                    echo '<div class="col-md-4">';
+                    break;
+                case 4:
+                case 5:
+                    echo '<div class="col-md-6">';
+                    break;
+                case 9:
+                    echo '<div class="col-md-8">';
+                    break;
+                }   
+    $num++; 
+            ?>
+                <div class="icerik-post post-height">
+                    <div class="post-image">
+                        <div class="img-block">
+                            <a href="<?php the_permalink() ?>"><?php echo get_the_post_thumbnail() ?></a>
+                            <div class="post-etiket"><span class="etiket"><a href="<?php the_permalink() ?>"><?php the_tags() ?></a></span></div>
+                        </div>
+                    </div>
+                    <div class="post-icerik">
+                        <h5 class="post-title"><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h5>
+                        <p><?php excerpt_limit(200, '...'); ?></p>
+                        <div class="info">
+                            <p><span class="ago"><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo human_time_diff(get_the_time('U'), current_time('timestamp')) . ' önce '; ?></span><span class="okuma"><i class="fa fa-eye" aria-hidden="true"></i> <?php echo getPostViews(get_the_ID()); ?></span><a href="" title="Paylaş" class="share"><i class="fa fa-share" aria-hidden="true"></i></a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <?php endwhile; ?>
+
+    <?php else: ?>
+
+    <?php endif; ?>
