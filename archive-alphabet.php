@@ -1,3 +1,5 @@
+https://onstartup.ru/articles/wordpress/alfavitnyj-ukazatel-wordpress/
+
 /* ----------------------------------------
   FUNCTION.PHP
 ---------------------------------------- */
@@ -151,3 +153,33 @@ endif; ?>
 	<?php endif; ?>
 
 <?php get_footer(); ?>
+
+
+/* ----------------------------------------
+  TAXONOMY-INDEX.PHP (CASTOM POST)
+---------------------------------------- */
+
+// ЭТО
+// Задаём массив параметров для пользовательского запроса WP_Query.
+$args_az = array(
+	'post_type'   => 'post',
+	'post_status' => 'publish',
+	'category'    => $cat_ID,
+	'numberposts' => -1
+);
+
+//МЕНЯЕМ НА ТО ЧТО НИЖЕ
+
+// Задаём массив параметров для пользовательского запроса WP_Query.
+$args_az = array(
+	'post_type'   => 'news',
+	'post_status' => 'publish',
+	'numberposts' => -1,
+	'tax_query'   => array(
+	array(
+		// Таксономия 'news_cat'.
+		'taxonomy' => 'news_cat',
+		'field'    => 'id',
+		'terms'    => $cat_ID
+	) )
+);
