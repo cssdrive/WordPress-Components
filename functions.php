@@ -7,6 +7,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Стили и скрипты для Gutenberg.
+ */
+function my_block_cgb_block_assets() {
+  wp_enqueue_style( 'uikit-style', get_theme_file_uri() . '/assets/uikit/css/uikit.min.css', null, '3.0.3' );
+  wp_enqueue_style( 'reset-style', get_theme_file_uri() . '/assets/css/reset.css', null, time() );
+}
+add_action( 'enqueue_block_assets', 'my_block_cgb_block_assets' );
+
+/**
+ * Стили и скрипты для Gutenberg Editor.
+ */
+function my_block_cgb_editor_assets() {
+  wp_enqueue_style( 'uikit-style', get_theme_file_uri() . '/assets/uikit/css/uikit.min.css', null, '3.0.3' );
+  wp_enqueue_script( 'uikit-script', get_theme_file_uri() . '/assets/uikit/js/uikit.min.js', array('jquery'), '3.0.3', false );
+  wp_enqueue_script( 'uikit-icons-script', get_theme_file_uri() . '/assets/uikit/js/uikit-icons.min.js', null, '3.0.3', false );
+}
+add_action( 'enqueue_block_editor_assets', 'my_block_cgb_editor_assets' );
+
+/**
  * Удаление лишнего класса из <?php body_class(); ?>
  */
 add_filter( 'body_class', function( $classes ) {
