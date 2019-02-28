@@ -68,17 +68,6 @@ function my_acf_init() {
 			'keywords'			=> array( 'testimonial', 'quote' ),
 		));
 		
-		// register a Youtube block
-		acf_register_block(array(
-			'name'				=> 'youtube',
-			'title'				=> __('YouTube'),
-			'description'		=> __('A custom YouTube block.'),
-			'render_callback'	=> 'my_acf_block_render_callback',
-			'category'			=> 'formatting',
-			'icon'				=> 'video-alt3',
-			'keywords'			=> array( 'youtube', 'video' ),
-		));
-		
 	}
 }
 add_action('acf/init', 'my_acf_init');
