@@ -7,6 +7,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * добавить alt к загруженной картинке (https://wp-kama.ru/id_12014/kak-avtomaticheski-dobavit-alt-k-zagruzhennoj-kartinke.html)
+ */
+function change_empty_alt_to_title( $response ) {
+	if ( ! $response['alt'] ) {
+		$response['alt'] = sanitize_text_field( $response['title'] );
+	}
+	return $response;
+}
+
+add_filter( 'wp_prepare_attachment_for_js', 'change_empty_alt_to_title' );
+
+/**
  * Стили и скрипты для Gutenberg.
  */
 function my_block_cgb_block_assets() {
