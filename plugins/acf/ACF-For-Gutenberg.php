@@ -1,24 +1,13 @@
 <?php
 
-// Работает только с версией ACF 8.0 и выше!
+// Only works with ACF version 8.0 and higher!
 
 /* ------------------------------------------------------------------------------------------------
-  Добавляем в Functions.php
+  add in Block.php
 ------------------------------------------------------------------------------------------------ */
 
 /**
- * Стили и скрипты для Gutenberg Editor.
- */
-function my_block_cgb_editor_assets() {
-	wp_enqueue_style( 'uikit-style', get_theme_file_uri() . '/assets/uikit/css/uikit.min.css', null, '3.0.3' );
-  wp_enqueue_script( 'uikit-script', get_theme_file_uri() . '/assets/uikit/js/uikit.min.js', array('jquery'), '3.0.3', false );
-  wp_enqueue_script( 'uikit-icons-script', get_theme_file_uri() . '/assets/uikit/js/uikit-icons.min.js', null, '3.0.3', false );
-}
-add_action( 'enqueue_block_editor_assets', 'my_block_cgb_editor_assets' );
-
-
-/**
- * Подключаем добавление шаблонов.
+ * Register Template Block
  */
 function my_acf_block_render_callback( $block ) {
 	
@@ -32,7 +21,7 @@ function my_acf_block_render_callback( $block ) {
 }
 
 /**
- * Создаем произволную Категорию в Gutenberg.
+ * Register Category in Gutenberg.
  */
 if ( ! function_exists( 'fubon_block_category' ) ) {
 	function fubon_block_category( $categories, $post ) {
@@ -50,7 +39,7 @@ if ( ! function_exists( 'fubon_block_category' ) ) {
 }
 
 /**
- * Создаем произвольные блоки в Gutenberg.
+ * Register Block in Gutenberg.
  */
 function my_acf_init() {
 	
@@ -66,6 +55,7 @@ function my_acf_init() {
 			'category'			=> 'fubon',
 			'icon'				=> 'admin-comments',
 			'keywords'			=> array( 'testimonial', 'quote' ),
+			'mode'				=> 'auto', //preview,auto
 		));
 		
 	}
@@ -75,43 +65,51 @@ add_action('acf/init', 'my_acf_init');
 
 
 /* ------------------------------------------------------------------------------------------------
-  Зозадем папку /template-parts/block/content-{Название вашего блока}.php
+  CSS
 ------------------------------------------------------------------------------------------------ */
 
-<?php
-/**
- * Block Name: Testimonial
- *
- * This is the template that displays the testimonial block.
- */
+/*
+	WP FIX
+*/
+.wp-person a:focus .gravatar, a:focus, a:focus .media-icon img {
+    box-shadow: 0 0 0 0 #5b9dd9,0 0 2px 0px rgba(30,140,190,.0) !important;
+    outline: none !important;
+}
 
-// get image field (array)
-$avatar = get_field('avatar');
+/*------------------------------------------------------------------
+  Reset
+-------------------------------------------------------------------*/
 
-// create id attribute for specific styling
-$id = 'testimonial-' . $block['id'];
+ul, li, ol {
+	list-style: none !important;
+}
 
-// create align class ("alignwide") from block setting ("wide")
-$align_class = $block['align'] ? 'align' . $block['align'] : '';
+/*------------------------------------------------------------------
+  Accordion
+-------------------------------------------------------------------*/
 
-?>
-<div id="<?php echo $id; ?>" class="testimonial <?php echo $align_class; ?>">
-    <p><?php the_field('testimonial'); ?></p>
-    <cite>
-    	<img src="<?php echo $avatar['url']; ?>" alt="<?php echo $avatar['alt']; ?>" />
-    	<span><?php the_field('author'); ?></span>
-    </cite>
-</div>
+.uk-accordion > li {
+	border: 1px solid #eeeeee;
+	padding: 15px;
+}
+.uk-accordion > li.uk-open {
+	border: 1px solid #1046e8;
+}
 
-<style type="text/css">
-	#<?php echo $id; ?> {
-		background: <?php the_field('background_color'); ?>;
-		color: <?php the_field('text_color'); ?>;
-	}
-</style>
+/* Default */
+.uk-accordion .uk-accordion-title {
+	
+}
+.uk-accordion .uk-accordion-content {
 
+}
 
+/* Open */
+.uk-accordion .uk-open .uk-accordion-title {
+	color: #1046e8;
+	border-bottom: 1px solid #1046e8;
+	padding-bottom: 10px;
+}
+.uk-accordion .uk-open .uk-accordion-content {
 
-/* ------------------------------------------------------------------------------------------------
-  В ACF добавляем новый блок и указываем его принадлежность | Блок -> Ваш Gutenberg Блок
------------------------------------------------------------------------------------------------- */
+}
