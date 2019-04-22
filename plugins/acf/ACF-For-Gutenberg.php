@@ -5,6 +5,22 @@
 /* ------------------------------------------------------------------------------------------------
   add in Block.php
 ------------------------------------------------------------------------------------------------ */
+acf_register_block_type(array(
+	//'enqueue_style'	=> get_template_directory_uri() . '/css/uikit.min.css',
+	//'enqueue_script'	=> get_template_directory_uri() . '/js/uikit.min.js',	
+));
+
+/**
+ * Register Style and Scripts
+ */
+
+function enqueue_assets(){
+	wp_enqueue_style( 'uikit-style', get_theme_file_uri() . '/css/uikit.min.css', null, '3.0.3' );
+	wp_enqueue_style( 'reset-style', get_theme_file_uri() . '/css/acf-uikit-gutenberg-block.css', null, time() );
+	wp_enqueue_script( 'uikit-script', get_theme_file_uri() . '/js/uikit.min.js', array('jquery'), '3.0.3', false );
+	wp_enqueue_script( 'uikit-icons-script', get_theme_file_uri() . '/js/uikit-icons.min.js', null, '3.0.3', false );
+}
+add_action( 'enqueue_block_editor_assets', 'enqueue_assets' );
 
 /**
  * Register Template Block
