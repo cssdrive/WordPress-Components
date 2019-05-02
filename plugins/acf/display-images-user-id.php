@@ -19,8 +19,9 @@
 	<?php } ?>
 
 	
-<!--------------------------------------- ACF ------------------------------------------------------>
-
+<!--
+  ACF
+-->
 <section class="uk-section uk-section-small">
 	<div class="uk-container">
 		<?php echo get_avatar($author->ID);?>
