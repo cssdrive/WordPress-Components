@@ -126,3 +126,69 @@
     <?php else: ?>
 
     <?php endif; ?>
+
+
+
+<!-- CUSTOM IMAGES -->
+
+<section class="uk-section uk-section-xsmall">
+	<div class="uk-container">
+		<?php $num = 0; ?>
+			<ul class="uk-grid-small" uk-grid>
+			    <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+			<?php 
+				$n = $num % 6 + 1; 
+				switch ($n) {
+			    case 1:
+				echo '<li class="uk-width-1-2 uk-width-1-1@s">'; ?>
+
+				<?php if ( has_post_thumbnail() ) : ?>
+							<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+								<img class="uk-width-1-1 uk-visible@s" data-src="<?php the_post_thumbnail('works-large'); ?>" alt="<?php the_title(); ?>" data-uk-img>
+								<img class="uk-width-1-1 uk-hidden@s" data-src="<?php the_post_thumbnail('works-small'); ?>" alt="<?php the_title(); ?>" data-uk-img>
+							</a>
+						<?php endif; ?>
+
+			    <?php break;
+			    case 2:
+			    case 3:
+				echo '<li class="uk-width-1-2">'; ?>
+
+				<?php if ( has_post_thumbnail() ) : ?>
+							<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+								<img class="uk-width-1-1 uk-visible@s" data-src="<?php the_post_thumbnail('works-medium'); ?>" alt="<?php the_title(); ?>" data-uk-img>
+								<img class="uk-width-1-1 uk-hidden@s" data-src="<?php the_post_thumbnail('works-small'); ?>" alt="<?php the_title(); ?>" data-uk-img>
+							</a>
+						<?php endif; ?>
+
+					<?php break;   
+			    case 4:
+			    case 5:
+			    case 6:
+				echo '<li class="uk-width-1-2 uk-width-1-3@s">'; ?>
+
+				<?php if ( has_post_thumbnail() ) : ?>
+							<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+								<img class="uk-width-1-1 uk-visible@s" data-src="<?php the_post_thumbnail('works-small'); ?>" alt="<?php the_title(); ?>" data-uk-img>
+								<img class="uk-width-1-1 uk-hidden@s" data-src="<?php the_post_thumbnail('works-small'); ?>" alt="<?php the_title(); ?>" data-uk-img>
+							</a>
+						<?php endif; ?>
+
+			    <?php break;
+			    }   
+					$num++;
+				?>
+
+					<?php //Контент внутри <li></li> ?>
+
+				</li>
+			    <?php endwhile; ?>
+			</ul>
+
+				<?php fubon_pagenavi(); ?>
+
+		    <?php else: ?>
+
+		<?php endif; ?>
+	</div>
+</section>
