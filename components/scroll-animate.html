@@ -1,0 +1,18 @@
+<script>
+jQuery(function (f) {
+  f(window).scroll(function () {
+    f('#logo_animate')[(f(this).scrollTop() > 100 ? "add" : "remove") + "Class"]("logo_visible"); 
+   });
+  });
+ </script>
+ 
+ <!-- HTML -->
+ <a id="logo_animate" class="uk-navbar-item uk-logo uk-text-bold" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">Logo</a>
+ 
+ <!-- Style -->
+ .header .uk-logo {
+	display: none;
+}
+.header .uk-logo.logo_visible {
+	display: inline-block;
+}
